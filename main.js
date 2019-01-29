@@ -78,7 +78,7 @@ function showTodos() {
 
     if (todos.length > 0) {
         for (let i = 0; i < todos.length; i++) {
-            console.log(todos.indexOf(todos[i]) + "：" + todos[i]);
+            console.log(i + "：" + todos[i]);
         }
     } else {
         console.log("タスクなし");
@@ -132,7 +132,7 @@ function deleteTodo() {
     const num = prompt("削除するタスクの番号を指定してください");
     const parsedNumber = parseInt(num, 10);
 
-    if (isNaN(parsedNumber) || parsedNumber > todos.length) {
+    if (isNaN(parsedNumber) || parsedNumber > todos.length - 1 || parsedNumber < 0 ) {
         alert("不正な値のためスキップします");
     } else {
         const deletedTodos = todos.splice(parsedNumber, 1);
