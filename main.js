@@ -81,9 +81,6 @@ function showTodos() {
             console.log(todos.indexOf(todos[i]) + "：" + todos[i]);
         }
     } else {
-        console.log("========================");
-        console.log("現在持っているのタスク一覧");
-        console.log("========================");
         console.log("タスクなし");
     }
 };
@@ -134,7 +131,8 @@ function createTodo() {
 function deleteTodo() {
     const num = prompt("削除するタスクの番号を指定してください");
     const parsedNumber = parseInt(num, 10);
-    if (parsedNumber >= 6 && parsedNumber !== 6) {
+
+    if (isNaN(parsedNumber) || parsedNumber > todos.length) {
         alert("不正な値のためスキップします");
     } else {
         const deletedTodos = todos.splice(parsedNumber, 1);
