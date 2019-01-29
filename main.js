@@ -18,7 +18,7 @@ const todos = ["掃除", "買い物", "散歩"];
 const commands = ["確認", "追加", "削除", "終了"];
 
 // ここに、promptで入力したものを保持しておくための変数「input」を用意する
-const input;
+let input;
 
 // ここに「終了」と入力されたらループを終了するwhileループを作成する
 //   - whileループの中でprompt関数を使って、値を入力できるようにして、入力された内容は変数「input」に格納する
@@ -40,13 +40,12 @@ while (input !== commands[3]) {
         deleteTodo();
     } else if (input === commands[3]) {
         console.log("終了します");
-    };
-};
-if (input !== commands) {
-    cosole.log("「確認,追加,削除,終了」以外は入力できません");
-};
+    } else {
+        console.log("「確認,追加,削除,終了」以外は入力できません");
+    }
+}
 // ここでWhileループを抜けた後もタスク一覧を表示する(最終的なタスク一覧を確認するため)
-console.log(todos);
+showTodos();
 
 /**
  * 「確認」が入力されたときに実行される関数「showTodos関数」を用意する
@@ -73,15 +72,22 @@ console.log(todos);
  */
 // ここにshowTodos関数を作る
 function showTodos() {
-    todos.forEach = (name, index) => {
-        console.log(
-            "========================" + "現在持っているのタスク一覧" + "========================" + index + "：" + name);
-        if (todos === null) {
-            console.log(
-                "========================" + "現在持っているのタスク一覧" + "========================" + "タスクなし");
+    console.log("========================");
+    console.log("現在持っているのタスク一覧");
+    console.log("========================");
+
+    if (todos.length > 0) {
+        for (let i = 0; i < todos.length; i++) {
+            console.log(todos.indexOf(todos[i]) + "：" + todos[i]);
         }
+    } else {
+        console.log("========================");
+        console.log("現在持っているのタスク一覧");
+        console.log("========================");
+        console.log("タスクなし");
     }
 };
+
 
 /**
  * 「追加」が入力されたときに実行される関数「createTodo関数」を用意する
@@ -96,12 +102,9 @@ function showTodos() {
 // ここにcreateTodo関数を作る
 function createTodo() {
     const text = prompt("タスクを入力して下さい");
-    console.log(text);
-    if (text === "") {
+    if (!text) {
         alert("何も入力されていないためスキップします");
-    } else if (text === null) {
-        alert("何も入力されていないためスキップします");
-    } else if (text === todos) {
+    } else {
         todos.push(text);
         alert("新しいタスクが追加しました");
         showTodos();
@@ -128,13 +131,13 @@ function createTodo() {
  *      3. showTodos関数を実行して、現在保持しているタスク一覧を表示する
  */
 //ここにdeleteTodo関数を作る
-function deeteTodo() {
+function deleteTodo() {
     const num = prompt("削除するタスクの番号を指定してください");
-    parseInt(num);
-    if (num !== 0, 1, 2, 3, 4) {
+    const parsedNumber = parseInt(num, 10);
+    if (parsedNumber >= 6 && parsedNumber !== 6) {
         alert("不正な値のためスキップします");
-    } else if (num === 0, 1, 2, 3, 4) {
-        const deletedTodos = todos.splice(num);
+    } else {
+        const deletedTodos = todos.splice(parsedNumber, 1);
         alert(deletedTodos + "を削除しました");
         showTodos();
     }
