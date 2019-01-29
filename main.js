@@ -132,7 +132,7 @@ function deleteTodo() {
     const num = prompt("削除するタスクの番号を指定してください");
     const parsedNumber = parseInt(num, 10);
 
-    if (isNaN(parsedNumber) || parsedNumber > todos.length - 1 || parsedNumber < 0 ) {
+    if (isNaN(parsedNumber) || parsedNumber >= todos.length || parsedNumber < 0 ) {
         alert("不正な値のためスキップします");
     } else {
         const deletedTodos = todos.splice(parsedNumber, 1);
